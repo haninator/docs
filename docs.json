@@ -14,11 +14,15 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Docs",
             "pages": [
               "introduction",
-              "quickstart",
-              "development"
+              "requirements",
+              "architecture",
+              "pipeline",
+              "git",
+              "tests",
+              "known issues"
             ]
           },
           {

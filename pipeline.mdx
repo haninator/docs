@@ -1,0 +1,53 @@
+# Pipeline
+
+We decided to use GitHub Actions for our pipeline. Actions are tightly integrated into GitHub, therefore they seemed to
+be the perfect choice.
+> We are going to find out Actions do create a lot more problems, then they solve. More later on
+
+## Jobs
+
+We split our pipeline into seperated jobs, which fulfil their own purpose.
+
+### SAST
+
+We wanted to implement default SAST test, but as it turn out: To do it correctly we need GitHub Enterprise, which is
+obviously to expensive for our small budget. Which means for now, no SAST.
+
+### Tests
+
+This job is running on every push and on every pull request. The only exception is on the push to master. The job is
+running a simple `./gradlew test` command. We used the gradle wrapper to ensure that it works in the pipeline as well as
+on a devs workstation.
+
+### Build jar
+
+The build job is triggered on every pull request. We use this to make sure we can package our application, therefor its
+only needed before merging into a tracked branch
+
+### Build Dockerfile
+
+We tried to implement a job which builds the Dockerfile. This turns out to be a bit more tricky than useful. The
+problem was the way we implemented the Foundation. Everywhere we used the Foundation classes we imported the compiled
+jar. Which means the jar must already be available. Therefor it was tricky to create a dockerfile which also build the
+jar. </br>
+For now we resign ourselves to prebuild the jar and import them while building the dockerfile. That the Dockerfile or
+the
+Service jar compile successfully, the file structure needs to be exactly like it is in the project.
+
+> TL;DR We skipped the build Dockerfile stage for now. First we need to fix the way the foundation is imported
+
+## Changelog
+
+We created a changelog for every release, even when we only released once :)
+
+## 'prod' environment
+
+To simplify the replacement inside the app we deployed our finished backend onto a server. Due to time problems shortly
+before the medianight, we did not have time to create a dev proxy for a local development. Deploying made that
+superfluous, and we didn't have to worry about port problems.</br>
+The full docker compose can be found in a [repository on GitHub](https://github.com/pomovillage/prod-server-stack)
+
+On the server we are running a traefik proxy, which routes the request by path prefix and forwards the request to the
+correct port. This proxy also validates the JWT given in the authorization header, by using the 'experimental' JWT
+middleware provided by the official plugin repository. The plugin validates the JWT by checking if it is expired. If
+it is expired the proxy responses with an `401 unauthorized`. If it is valid, it forwards to the specific service.

@@ -1,71 +1,76 @@
----
-title: Introduction
-description: "Welcome to the home of your new documentation"
----
+# Introduction
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.png"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
+As a team, we took the time to thoroughly evaluate the pros and cons of continuing with Firebase versus transitioning
+to an in-house Spring backend. We discussed the features and benefits Firebase offers, such as its ease of use,
+scalability, and built-in services. However, we also identified some limitations that Firebase imposes, especially
+in terms of flexibility and data control.
 
-## Setting up
+On the other hand, moving to a custom Spring backend offers us greater control over our data, more flexibility
+in handling complex use cases, and the ability to implement more tailored solutions that align with our specific
+needs. Additionally, managing our own backend will provide us with the opportunity to
+optimize and scale the system according to our requirements.
 
-The first step to world-class documentation is setting up your editing environments.
+After weighing the advantages and trade-offs, we decided that transitioning to a Spring-based solution will
+provide us with greater independence and a more customizable, sustainable architecture for the future.
 
-<CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
-  </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
+## How to start
 
-## Make it yours
+### Backend
 
-Update your docs to your brand and add valuable content for the best user conversion.
+The services can be found in the [monorepo repository](https://github.com/pomovillage/monorepo)
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/content/components/accordions"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+We provide a complete docker compose file, which contains all needed container and configuration via environment
+variables.
+</br>
+Which means we suggest to use it because it's the simplest and straight forward experience. To build the dockerfiles,
+the
+.jars must be built first. Our setup is tested with java 17 and gradle 8.8, but for the root project we provide a gradle
+wrapper.
+
+To build the jars and run the docker compose run:
+
+``` bash
+./gradlew clean build -x test
+docker compose up --build -d
+```
+
+If you want to run the services without using a docker image, you need a PostgreSQL database (tested with V17) and a
+RabbitMQ (tested with V3). You might need to change the hosts in the `application.yml` configuration files.
+
+### App
+
+The app can be found in the [pomovillage-v.2 repository](https://github.com/pomovillage/pomovillage-v.2)
+
+We developed the app for Android and tested it on Android 13 using a Pixel 6 Pro. For the Android emulator, we used JDK
+19.0.2, and a Gradle wrapper is provided. Flutter has been tested with version 3.27.3.
+For using the app, you don't need to start the backend locally. The app is using our server as a backend.
+
+> If you experience any problems with that, please contact us!
+
+For installation instructions, refer to the
+official [Flutter installation guide](https://docs.flutter.dev/get-started/install).
+
+To run the app, start the android emulator and then run from the `pomovillage_v2` directory:
+
+```bash
+cd pomovillage_v2/
+flutter run
+```
+
+## Scope
+
+At start of the project we wanted to define a scope for this project: For this project our target was to replace most of
+Firebase functionality. We mostly aim for a backend which can be used in a similar way. To update a 'deprecated' app is
+a necessary evil to represent the functionality of our new backend.
+
+## Tools
+
+### Organization tools
+
+We are using a wide range of tools: Youtrack, GitHub and Miro.
+
+### Techstack
+
+As app technology we are sticking to flutter, for now. For the backend technology we decided to use Java with the well
+known Spring Boot framework, because we have a lot of previous experience. To round this up we are using PostgreSQL,
+RabbitMQ and Docker.

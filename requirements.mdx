@@ -1,0 +1,26 @@
+# Requirements
+
+### Requirement Approach
+We developed these requirements after discussing as a team the features Firebase offers and comparing them 
+with the capabilities we need for our new backend. We identified the essential functions and qualities that 
+Firebase provided and then determined the corresponding features we must implement in the new Spring backend
+to replace Firebase while meeting our needs for scalability, control, and security.
+
+### Business Requirements:
+1. **Independence from Firebase** – The system must replace Firebase Firestore with 
+a self-hosted backend to eliminate dependency on third-party cloud services
+2. **Full Data Control** – The new backend must ensure full ownership and control over data storage, access, and management
+
+### Non-Functional Requirements:
+1. **Scalability** – The backend must be able to handle increasing data loads and user traffic efficiently
+2. **Security & Compliance** – The system must ensure data protection through secure authentication and authorization
+3. **High Availability & Reliability** – The backend should be designed to minimize downtime and ensure continuous availability
+4. **Performance Efficiency** – The system should provide low-latency data access and efficient query performance
+
+### Functional Requirements:
+1. **Data Storage & Management** – The backend must support CRUD
+(Create, Read, Update, Delete) operations for all relevant data entities
+2. **API for Frontend Integration** – A RESTful API must be implemented to allow seamless communication with the mobile frontend
+3. **Logging & Monitoring** – The backend must include logging and monitoring functionalities to track system health and errors
+4. **User Authentication & Authorization** – The system must integrate with Firebase Authentication 
+for user login and management while maintaining role-based access control in the new backend

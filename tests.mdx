@@ -1,0 +1,12 @@
+# Tests
+
+For a seamless developer experience, testing is of great importance. Therefore, we aim to test every endpoint thoroughly.
+
+### Integration test
+
+Because of time restrictions we focused on integration tests, which creates a test system for every endpoint. Every test
+is running by calling the Endpoint by url predicting the response. This insures us the service is running as expected.
+Every service is tested with H2 as an in memory database. Because of some problems with mockito and RabbitMQ we skipped one endpoint,
+which tries to use a cursed RabbitMQ mock.
+
+> Most services are tested by one integration test from top to bottom, with some edge cases covered

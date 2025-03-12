@@ -1,0 +1,11 @@
+# Known issues
+
+- Firebase Authentication Dependency – Authentication is still handled via Firebase.
+- No User-Specific Data – Currently, there are no user-bound data, as the Gatekeeper service (responsible for
+  authentication and user-specific data) has not been implemented yet.
+- Limited Testing Scope – Only integration tests have been conducted; separate service and repository tests are still missing.
+- iOS Build Issues – The iOS build is not functioning properly.
+- Data Fetching in the App – Pages in the app do not refresh data automatically; users must first navigate to a
+  different page and then return to see updated content (For example: after creating a new Village).
+- No Development Proxy – Currently, the deployed traefik setup needs to be used, with no dedicated development proxy in place for
+  local app development.
