@@ -1,7 +1,10 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 # Architecture
 
 Our system is built on a Service-Oriented Architecture (SOA) to ensure scalability, maintainability, and
-flexibility. <br>
+flexibility. <br />
 By structuring the application into independent, modular services, we enable:
 
 - **Scalability** – Services can be scaled independently.
@@ -10,7 +13,7 @@ By structuring the application into independent, modular services, we enable:
 
 This approach ensures a future-proof and adaptable system while maintaining high reliability and performance.
 
-## Architectural component Overview
+## Architectural Component Overview
 
 - **Architecture Style**: Service-Oriented Architecture (SOA)
 - **Foundation**: Contains the Spring entities and the RabbitMQ Queues, Exchanges & Topics and serves as the foundation
@@ -22,17 +25,17 @@ This approach ensures a future-proof and adaptable system while maintaining high
     - **Planner** - Is the service for the calendar
 - **RabbitMQ**: For communication between the services
 
-![img.png](pictures/architecture.png)
+<Image src="/pictures/architecture.png" alt="Architecture Diagram" width={800} height={600} />
 
 ## File Structure
 
-In the backend we decided to go for an uncomplicated monorepo. Therefor every service got its own directory. We created
-a root gradle project to simplify the test and building process even more. Inside every service we created directories
+In the backend we decided to go for an uncomplicated monorepo. Therefore, every service got its own directory. We created
+a root Gradle project to simplify the test and building process even more. Inside every service, we created directories
 representing a specific feature.
 
-In the frontend we kept the old structure, for more information please refer to the [old documentation](https://gitlab.mi.hdm-stuttgart.de/pm086/learnmoto/-/wikis/02-Architecture)
+In the frontend, we kept the old structure. For more information, please refer to the <Link href="https://gitlab.mi.hdm-stuttgart.de/pm086/learnmoto/-/wikis/02-Architecture">old documentation</Link>.
 
-```
+```plaintext
 // inside the pomovillage_v2 directory in the repo -> https://github.com/pomovillage/pomovillage-v.2
 
 -core                                   --- Things that are needed all over the place and/or are needed for expandability
@@ -44,27 +47,27 @@ In the frontend we kept the old structure, for more information please refer to 
     |-game_controllers                  --- Controllers for the common game components
     |-provider                          --- Common used Provider
     |-provider_interfaces               --- Interfaces for the Data Providers
--config                                 --- Configuration (Styles, configfiles...)
--features                               --- every feature gets its own dir
+-config                                 --- Configuration (Styles, config files...)
+-features                               --- Every feature gets its own directory
     |-feature_name
-        |-compontent                    --- every widget that is used in this feature
-        |-controller                    --- the business logic
+        |-component                    --- Every widget that is used in this feature
+        |-controller                    --- The business logic
         |-providers                     --- (optional) for everything that comes from outside the app (API, DB, ...)
-        |-feature_name_page.dart        --- the main widget that is used in the router
--utils                                  --- common used helper
-    |-enums                             --- general used enums
+        |-feature_name_page.dart        --- The main widget that is used in the router
+-utils                                  --- Common used helper
+    |-enums                             --- General used enums
 ```
 
-## Data structure
+## Data Structure
 
 We realized that the previous data structure was too nested, so we revised it.
-This change resulted from transitioning from a document-based model to a relational one using PostgreSQL. <br>
+This change resulted from transitioning from a document-based model to a relational one using PostgreSQL. <br />
 The updated structure is designed to better align with Spring best practices, ensuring better scalability,
 maintainability, and performance.
 
-![img.png](pictures/entity.png)
+<Image src="/pictures/entity.png" alt="Entity Diagram" width={800} height={600} />
 
-## Service structure
+## Service Structure
 
 We adhere to Spring’s standards to ensure consistency, maintainability, and scalability across the application.
 This approach guarantees that all services are designed in line with best practices and follow a unified pattern.
@@ -92,13 +95,13 @@ ensuring consistency across the platform:
 - **Follows Spring best practices**, ensuring that each service is scalable, maintainable, and easily integrated with
   the rest of the system
 
-## App implementation
+## App Implementation
 
 Since the frontend app was originally integrated with the old backend (Firebase),
 significant adjustments were needed to switch to our new Spring-based backend.
 We had to modify the providers and related components to ensure compatibility with the new backend architecture.
-This included updating data fetching, and service interactions to work seamlessly with the Spring services.
-As we are planing to replace the app next semester anyway, the primary goal during this phase was to ensure a functional
+This included updating data fetching and service interactions to work seamlessly with the Spring services.
+As we are planning to replace the app next semester anyway, the primary goal during this phase was to ensure a functional
 app, capable of retrieving and displaying data from the new backend while maintaining core functionality.
 
 ## User Authentication

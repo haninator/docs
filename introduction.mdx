@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 # Introduction
 
 As a team, we took the time to thoroughly evaluate the pros and cons of continuing with Firebase versus transitioning
@@ -13,33 +15,30 @@ optimize and scale the system according to our requirements.
 After weighing the advantages and trade-offs, we decided that transitioning to a Spring-based solution will
 provide us with greater independence and a more customizable, sustainable architecture for the future.
 
-## How to start
+## How to Start
 
 ### Backend
 
-The services can be found in the [monorepo repository](https://github.com/pomovillage/monorepo)
+The services can be found in the <Link href="https://github.com/pomovillage/monorepo">monorepo repository</Link>.
 
-We provide a complete docker compose file, which contains all needed container and configuration via environment
-variables.
-</br>
-Which means we suggest to use it because it's the simplest and straight forward experience. To build the dockerfiles,
-the
-.jars must be built first. Our setup is tested with java 17 and gradle 8.8, but for the root project we provide a gradle
+We provide a complete Docker Compose file, which contains all needed containers and configuration via environment
+variables.<br />
+This means we suggest using it because it's the simplest and most straightforward experience. To build the Dockerfiles,
+the `.jars` must be built first. Our setup is tested with Java 17 and Gradle 8.8, but for the root project, we provide a Gradle
 wrapper.
 
-To build the jars and run the docker compose run:
+To build the jars and run the Docker Compose, run:
 
-``` bash
+```bash
 ./gradlew clean build -x test
 docker compose up --build -d
 ```
 
-If you want to run the services without using a docker image, you need a PostgreSQL database (tested with V17) and a
-RabbitMQ (tested with V3). You might need to change the hosts in the `application.yml` configuration files.
+If you want to run the services without using a Docker image, you need a PostgreSQL database (tested with V17) and RabbitMQ (tested with V3). You might need to change the hosts in the `application.yml` configuration files.
 
 ### App
 
-The app can be found in the [pomovillage-v.2 repository](https://github.com/pomovillage/pomovillage-v.2)
+The app can be found in the <Link href="https://github.com/pomovillage/pomovillage-v.2">pomovillage-v.2 repository</Link>.
 
 We developed the app for Android and tested it on Android 13 using a Pixel 6 Pro. For the Android emulator, we used JDK
 19.0.2, and a Gradle wrapper is provided. Flutter has been tested with version 3.27.3.
@@ -48,9 +47,9 @@ For using the app, you don't need to start the backend locally. The app is using
 > If you experience any problems with that, please contact us!
 
 For installation instructions, refer to the
-official [Flutter installation guide](https://docs.flutter.dev/get-started/install).
+official <Link href="https://docs.flutter.dev/get-started/install">Flutter installation guide</Link>.
 
-To run the app, start the android emulator and then run from the `pomovillage_v2` directory:
+To run the app, start the Android emulator and then run from the `pomovillage_v2` directory:
 
 ```bash
 cd pomovillage_v2/
@@ -59,18 +58,14 @@ flutter run
 
 ## Scope
 
-At start of the project we wanted to define a scope for this project: For this project our target was to replace most of
-Firebase functionality. We mostly aim for a backend which can be used in a similar way. To update a 'deprecated' app is
-a necessary evil to represent the functionality of our new backend.
+At the start of the project, we wanted to define a scope for this project: Our target was to replace most of Firebase’s functionality. We mostly aim for a backend that can be used in a similar way. Updating a 'deprecated' app is a necessary evil to represent the functionality of our new backend.
 
 ## Tools
 
-### Organization tools
+### Organization Tools
 
-We are using a wide range of tools: Youtrack, GitHub and Miro.
+We are using a wide range of tools: YouTrack, GitHub, and Miro.
 
-### Techstack
+### Tech Stack
 
-As app technology we are sticking to flutter, for now. For the backend technology we decided to use Java with the well
-known Spring Boot framework, because we have a lot of previous experience. To round this up we are using PostgreSQL,
-RabbitMQ and Docker.
+As app technology, we are sticking to Flutter, for now. For the backend technology, we decided to use Java with the well-known Spring Boot framework, because we have a lot of previous experience. To round this up, we are using PostgreSQL, RabbitMQ, and Docker.
